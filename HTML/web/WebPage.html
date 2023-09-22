@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HomePAge</title>
+  <link rel="stylesheet" type="text/css" href="../css/HomePage.css">
+  <link rel="stylesheet" type="text/css" href="../js/main.js">
+
+
+
+</head>
+<body>
+  <div class="Header">
+    <p id="title">
+      Home Page
+    </p>
+  </div>
+  <div class="content">
+
+    <form>
+      <label for="surveyTitle">Survey Title:</label><br>
+      <input type="text" id="surveyTitle" name="surveyTitle" value="New Survey"><br>
+      <div>
+        <label for="question">Choose a car:</label>
+        <select id="question" name="question1">
+          <option value="multi choice question">Multi choice question</option>
+          <option value="open end question">Open end question</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="questionBody">question:</label><br>
+        <input type="text" id="questionBody" name="questionBody"><br>
+        <label for="option1">option1:</label><br>
+        <input type="text" id="option1" name="option1"><br>
+        <label for="option2">option1:</label><br>
+        <input type="text" id="option2" name="option2"><br>
+        <label for="option3">option3:</label><br>
+        <input type="text" id="option3" name="option3"><br>
+      </div>
+      <input type="submit" onclick="submitSurvey();"><br/>
+      <label>Your input: </label>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
