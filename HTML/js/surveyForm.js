@@ -1,29 +1,20 @@
 
-let survey = {};
-let questions = [];
-let options = [];
-
-const surveyNameInput = document.getElementById('surveyName');
-survey.id = 1
-survey.name = surveyNameInput.value;
- // surveyNameInput.addEventListener('input', addQuestion () )
-
-
 
 
 function addQuestion() {
 
    let question = document.createElement("div");
+  question.className = 'question';
 
-   let questionBody = creatQuestionBody()
+
+  let questionBody = creatQuestionBody()
    let questionType =  creatQuestionTypeDropdown()
    let questionChoices = creatQuestionChoices(questionType)
 
    question.appendChild(questionBody);
    question.appendChild(questionType);
    question.appendChild(questionChoices);
-
-   questions.push(question);
+   // addQuestionToSurvey(question);
 
    const questionsContainer = document.getElementById('questionsContainer');
 
@@ -68,13 +59,18 @@ function creatQuestionChoices(questionType) {
     if (questionType.value === "MULTIPLE_CHOICE") {
       return creatQuestionOptions()
 
+    }else {
+      const option =  document.createElement("p")
+      const node = document.createTextNode("This is new.");
+      option.appendChild(node);
+      return option;
     }
 
-  return creatQuestionOptions();
+
 }
 
 function creatQuestionOptions() {
-
+  let options = [];
   const optionContainer = document.createElement("div");
   const optionButton = document.createElement("button");
   optionButton.type = "button";
@@ -92,5 +88,7 @@ function creatQuestionOptions() {
 }
 
 
-function submitSurvey() {
-}
+
+
+
+
