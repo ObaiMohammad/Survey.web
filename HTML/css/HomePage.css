@@ -7,3 +7,54 @@
 #title{
   text-align: center;
 }
+
+.btn {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 2px 5px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+#surveyDescription{
+  --gm3-dialog-refactored-z-index: auto!important;
+  --gm3-dialog-refactored-container-surface-tint-layer-color: #fff;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  outline: none;
+  width: 100%;
+  color: #202124;
+  box-sizing: border-box;
+  min-height: 21px;
+  font-family: 'docs-Roboto';
+  font-weight: 400;
+  font-size: 11pt;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+#title{
+  --gm3-dialog-refactored-z-index: auto!important;
+  --gm3-dialog-refactored-container-surface-tint-layer-color: #fff;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  outline: none;
+  color: #202124;
+  width: 100%;
+  min-height: 1.5em;
+  font-family: 'docs-Roboto';
+  font-weight: 400;
+  font-size: 24pt;
+  line-height: 1.25;
+  letter-spacing: 0;
+}

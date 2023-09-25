@@ -1,20 +1,23 @@
 
 
-
 function addQuestion() {
 
    let question = document.createElement("div");
   question.className = 'question';
 
 
-  let questionBody = creatQuestionBody()
+   let questionBody = creatQuestionBody()
    let questionType =  creatQuestionTypeDropdown()
    let questionChoices = creatQuestionChoices(questionType)
+   let removeQuestion = creatRemoveButton(question)
+
 
    question.appendChild(questionBody);
    question.appendChild(questionType);
+   question.appendChild(removeQuestion);
    question.appendChild(questionChoices);
-   // addQuestionToSurvey(question);
+
+
 
    const questionsContainer = document.getElementById('questionsContainer');
 
@@ -70,25 +73,44 @@ function creatQuestionChoices(questionType) {
 }
 
 function creatQuestionOptions() {
-  let options = [];
+
   const optionContainer = document.createElement("div");
   const optionButton = document.createElement("button");
   optionButton.type = "button";
   optionButton.textContent = "Add Option";
+
   optionContainer.appendChild(optionButton);
   optionButton.onclick = function() {
     const optionInput = document.createElement("input");
     optionInput.type = "text";
     optionInput.name = "choices";
     optionInput.placeholder = "Enter option";
-    options.push(optionInput.value);
+    let removeQuestion = creatRemoveButton(optionInput);
     optionContainer.appendChild(optionInput);
+    optionContainer.appendChild(removeQuestion);
   };
+
   return optionContainer;
 }
 
 
 
+function creatRemoveButton(element) {
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.className = "btn"
+  const iconElement = document.createElement("i");
+  iconElement.className = "fa fa-trash"; // Font Awesome class for the trash icon
 
+// Append the icon element to the button
+  removeButton.appendChild(iconElement);
+  removeButton.appendChild(document.createElement("br"))
+
+  removeButton.onclick = function() {
+    element.remove();
+    removeButton.remove();
+  };
+  return removeButton;
+}
 
 

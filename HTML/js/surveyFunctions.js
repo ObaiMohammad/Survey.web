@@ -1,8 +1,9 @@
 
 let survey = {
   id: "",
-  name: "", // You can set the name later when needed
-  questions: [], // Array to store survey questions
+  title: "",
+  description: "",
+  questions: []
 };
 
 
@@ -28,10 +29,14 @@ function addQuestionToSurvey() {
 
 function formattedSurvey(questions) {
   const surveyNameInput = document.getElementById('surveyTitle');
+  const surveyDescriptionInput = document.getElementById('surveyDescription');
   survey.name = surveyNameInput.value;
-  console.log(survey.name)
+  survey.description = surveyDescriptionInput.value;
+
+  console.log(survey.name +" /"+ survey.description)
   return {id: 1,
           name: survey.name,
+          description: survey.description,
           questions: questions};
 }
 
