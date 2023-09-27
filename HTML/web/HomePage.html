@@ -5,49 +5,33 @@
   <title>Title</title>
   <script src="../js/LoginFunctions.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/HomePage.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 </head>
 <body>
 
 
 <h2>Welcome</h2>
 
-<button onclick="displayLoginBlock()" id="login" class="accessButton" >Login</button>
+<button onclick="displayBlock('loginBlock')" id="login" class="accessButton" >Login</button>
 <div class="sinUpContainer">
   <p> Or create an account now </p>
-  <button onclick="displayLoginBlock()" id="signUp" class="accessButton" >Sign up</button>
+  <button onclick="displayBlock('SignUpBlock')" id="signUp" class="accessButton" >Sign up</button>
 </div>
 
+<div id="login-placeholder"></div>
+<script>
+  $(function(){
+    $("#login-placeholder").load("LoginForm.html");
+  });
+</script>
+<div id="singUp-placeholder"> </div>
 
-
-<div id="loginBlock" class="modal">
-
-  <form class="modal-content animate">
-    <div class="imgContainer">
-      <span onclick="removeLoginBlock()" class="close" title="Close Modal">&times;</span>
-      <img src="../img/userAvatar.jpg" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" id = "uname" name="uname" required>
-
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" id = "psw" name="psw" required>
-
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="removeLoginBlock()" class="cancelButton">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-
+<script>
+  $(function(){
+    $("#singUp-placeholder").load("SingUpForm.html");
+  });
+</script>
 
 </body>
 </html>
