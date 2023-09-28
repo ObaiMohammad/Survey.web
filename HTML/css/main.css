@@ -159,13 +159,13 @@ textarea {
  *    `:before` to contain the top-margins of child elements.
  */
 
-.clearfix::before,
-.clearfix::after {
+.SignupActions::before,
+.SignupActions::after {
   content: " ";
   display: table;
 }
 
-.clearfix::after {
+.SignupActions::after {
   clear: both;
 }
 

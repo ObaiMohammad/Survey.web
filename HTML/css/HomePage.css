@@ -1,6 +1,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 body {
+  font-size: 14px; /* Font size */
   background-image: url('../img/survey.png');
   background-size: cover; /* Cover the entire viewport */
   /*background-position: center; !* Center the background image *!*/
@@ -13,10 +14,11 @@ body {
 }
 
 #loginContainer {
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    /*border-width:2px;*/
-    /*border-style: solid;*/
-    /*border-color: #d9d8d8;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*justify-content: flex-start;*/
+  background-color: rgba(255, 255, 255, 0.78); /* Semi-transparent white background */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 20px;
@@ -25,56 +27,11 @@ body {
   margin-left: 50px;
 }
 
-
-/*body {*/
-/*  display: flex;*/
-/*  flex-wrap: wrap; !* Allow items to wrap to the next line *!*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  height: 100vh;*/
-/*  margin: 0;*/
-/*}*/
-/*!*#background{*!*/
-/*!* float: left;*!*/
-/*!*  width: 1000px;*!*/
-/*!*  height: 100%;*!*/
-/*!*}*!*/
-/*!*#loginContainer{*!*/
-/*!*  border-width:10px;*!*/
-/*!*  border-style:solid;*!*/
-/*!*  border-color:#FF0000;*!*/
-/*!*}*!*/
-
-/*#background {*/
-/*  max-width: 100%; !* Ensure the image doesn't exceed its natural size *!*/
-/*  height: auto;*/
-/*}*/
-
-/*#loginContainer {*/
-/*  flex: 1;*/
-/*  padding: 20px;*/
-/*}*/
-
-/*@media (max-width: 768px) {*/
-/*  !* Adjust styles for screens smaller than 768px width *!*/
-/*  body {*/
-/*    flex-direction: column; !* Stack elements vertically *!*/
-/*  }*/
-
-/*  #background {*/
-/*    width: 100%; !* Make the image take up the full width *!*/
-/*  }*/
-
-/*  #loginContainer {*/
-/*    width: 100%; !* Make the login container take up the full width *!*/
-/*    padding: 10px; !* Adjust padding for smaller screens *!*/
-/*  }*/
-/*}*/
-
 .accessButton{
-  width:auto;
   padding: 10px;
   border-top: 5px;
+  background-color: #F7CA44;
+
 }
 
 .sinUpContainer{
@@ -83,27 +40,22 @@ body {
   gap: 10px;
 }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
+
 
 /* Set a style for all buttons */
 
 button {
-  background-color: #04AA6D;
+  /*font-size:20px;*/
+  font-weight: bold;
+  background-color: #32acf6;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 150px;
+  width: 100%;
+  height: 40px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -120,20 +72,14 @@ button:hover {
   background-color: #f44336;
 }
 
-/* Center the image and position the close button */
-.imgContainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
-}
 
 img.avatar {
   width: 20%;
   border-radius: 40%;
 }
 
-.container {
-  padding: 16px;
+.singUpContainer {
+  padding: 0 16px;
 }
 
 span.psw {
@@ -153,29 +99,28 @@ span.psw {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 15px;
+  padding-top: 10px;
 }
-
+/*.modal {*/
+/*  width: min-content; !* Full width *!*/
+/*}*/
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 1% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 35%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
 .close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
+
+  background-color: red;
 }
 
 .close:hover, .close:focus {
-  color: red;
+  filter: brightness(0.85);
+  /*background-color: rgba(148, 27, 27, 0.99);*/
   cursor: pointer;
 }
 
@@ -205,3 +150,43 @@ span.psw {
     width: 100%;
   }
 }
+
+/* Style the date input */
+/* Style for the date input */
+input[type="date"],input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #ffffff; /* Background color */
+  color: #333; /* Text color */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  outline: none; /* Remove the default outline */
+
+}
+
+.SignupActions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+/* The Close Button (x) */
+.closeModal {
+  float: right;
+  color: black;
+  right: 35px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.closeModal:hover, .closeModal:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+

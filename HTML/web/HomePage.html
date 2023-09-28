@@ -6,17 +6,16 @@
   <script src="../js/LoginFunctions.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/HomePage.css">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="972346842302-4jd0s8rnej6q6nl9hh560eqeselmii1i.apps.googleusercontent.com">
+
 
 </head>
 <body>
  <div id ="loginContainer" >
    <h2>Welcome!</h2>
-   <button onclick="displayBlock('loginBlock')" id="login" class="accessButton" >Login</button>
-   <div class="sinUpContainer">
-     <p> Or create an account now </p>
-     <button onclick="displayBlock('SignUpBlock')" id="signUp" class="accessButton" >Sign up</button>
-   </div>
-
+   <div id="third-party-login">
+     <div class="g-signin2" data-onsuccess="onSignIn"></div>
    <div id="login-placeholder"></div>
    <script>
      $(function(){
@@ -24,6 +23,9 @@
      });
    </script>
    <div id="singUp-placeholder"> </div>
+     <button onclick="displayBlock('SignUpBlock')" id="signUp" class="accessButton" >create an account</button>
+   </div>
+
 
    <script>
      $(function(){

@@ -6,32 +6,21 @@
 </head>
 <body>
 
-<div id="loginBlock" class="modal">
+<div id="loginBlock" >
 
-  <form class="modal-content animate">
-    <div class="imgContainer">
-      <span onclick="removeBlock('loginBlock')" class="close" title="Close Modal">&times;</span>
-      <img src="../img/userAvatar.jpg" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
+  <form id="loginForm">
+    <div class="singupContainer">
       <input type="text" placeholder="Enter Username" id = "uname" name="uname" required>
 
 
-      <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" id = "psw" name="psw" required>
-
-      <button type="submit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
+      <button type="submit">Login</button>
+
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="removeBlock('loginBlock')" class="cancelButton">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
   </form>
 </div>
 
