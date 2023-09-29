@@ -37,13 +37,12 @@ document.addEventListener("DOMContentLoaded", function (){
 
       let action = document.createElement("div");
       action.className = "actions";
-      let  editButton = document.createElement("button");
-      editButton.className = "button";
-      editButton.textContent = "Edit"
 
-      let removeButton =  document.createElement("button");
-      removeButton.className = "cancelButton";
-      removeButton.textContent = "Remove"
+
+      let editButton = addEditButton(survey.id);
+      let removeButton = addRemoveButton(survey.id);
+
+
 
       action.appendChild(editButton);
       action.appendChild(removeButton);
@@ -56,3 +55,32 @@ document.addEventListener("DOMContentLoaded", function (){
     });
 
   });
+
+
+function addEditButton(id){
+  let  editButton = document.createElement("button");
+  editButton.id = "edit-button"
+  editButton.className = "button";
+  editButton.textContent = "Edit"
+  editButton.dataset.surveyId = id;
+// Add an event listener to the "Edit" button
+  editButton.addEventListener("click", function() {
+    // For demonstration purposes, we'll display an alert when the button is clicked
+    console.log("Edit button clicked! Survey ID: " + id);
+  });
+  return editButton;
+}
+function addRemoveButton(id){
+  let removeButton =  document.createElement("button");
+  removeButton.id = "remove-button"
+  removeButton.className = "cancelButton";
+  removeButton.textContent = "Remove"
+  removeButton.dataset.surveyId = id;
+
+// Add an event listener to the "Edit" button
+  removeButton.addEventListener("click", function() {
+    // For demonstration purposes, we'll display an alert when the button is clicked
+    console.log("Edit button clicked! Survey ID: " + id);
+  });
+  return removeButton;
+}
