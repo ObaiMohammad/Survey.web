@@ -1,55 +1,58 @@
-const jsonData = {
-  "surveys": [
-    {
-      "id": 1,
-      "title": "survey1",
-      "description": "This is the description of Survey 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    },
-    {
-      "id": 2,
-      "title": "survey2",
-      "description": "This is the description of Survey 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }
-  ]
-};
+document.addEventListener("DOMContentLoaded", function (){
 
-function creatSurveyTable(){
-  let cart = document.getElementById("cart")
-  jsonData.surveys.forEach((survey) => {
-    let surveyItems = document.createElement("div");
-    surveyItems.className = "survey-items";
 
-    let surveyDetails = document.createElement("div");
-    surveyDetails.className = "survey-details";
+  const jsonData = {
+    "surveys": [
+      {
+        "id": 3,
+        "title": "survey3",
+        "description": "This is the description of Survey 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      {
+        "id": 4,
+        "title": "survey4",
+        "description": "This is the description of Survey 4. Lorem ipsum dolor sit amet."
+      }
+    ]
+  };
 
-    let surveyTitle = document.createElement("h3");
-    surveyTitle.className = "title";
-    surveyTitle.textContent = survey.title;
+    let cart = document.getElementById("cart")
+    jsonData.surveys.forEach((survey) => {
+      let surveyItems = document.createElement("div");
+      surveyItems.className = "survey-item";
 
-    let surveyDescription = document.createElement("div");
-    surveyDescription.className = "survey-description";
-    let descriptionSpan = document.createElement("span");
-    descriptionSpan.textContent = survey.description;
+      let surveyDetails = document.createElement("div");
+      surveyDetails.className = "survey-details";
 
-    surveyDescription.appendChild(descriptionSpan);
+      let surveyTitle = document.createElement("h3");
+      surveyTitle.className = "title";
+      surveyTitle.textContent = survey.title;
 
-    let action = document.createElement("div");
-    action.className = "actions";
-    let  editButton = document.createElement("button");
-    editButton.className = "button";
+      let surveyDescription = document.createElement("div");
+      surveyDescription.className = "survey-description";
+      let descriptionSpan = document.createElement("span");
+      descriptionSpan.textContent = survey.description;
 
-    let removeButton =  document.createElement("button");
-    removeButton.className = "cancelButton";
+      surveyDescription.appendChild(descriptionSpan);
 
-    action.appendChild(editButton);
-    action.appendChild(removeButton);
+      let action = document.createElement("div");
+      action.className = "actions";
+      let  editButton = document.createElement("button");
+      editButton.className = "button";
+      editButton.textContent = "Edit"
 
-    surveyDetails.appendChild(surveyTitle);
-    surveyDetails.appendChild(surveyDescription);
-    surveyDetails.appendChild(action);
-    surveyItems.appendChild(surveyDetails);
-    cart.appendChild(surveyItems);
+      let removeButton =  document.createElement("button");
+      removeButton.className = "cancelButton";
+      removeButton.textContent = "Remove"
+
+      action.appendChild(editButton);
+      action.appendChild(removeButton);
+
+      surveyDetails.appendChild(surveyTitle);
+      surveyDetails.appendChild(surveyDescription);
+      surveyItems.appendChild(surveyDetails);
+      surveyItems.appendChild(action);
+      cart.appendChild(surveyItems);
+    });
+
   });
-
-    return cart;
-}
