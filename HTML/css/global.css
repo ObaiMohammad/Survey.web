@@ -5,8 +5,12 @@ body {
   background-image: url('../img/survey.png');
   background-size: cover; /* Cover the entire viewport */
   background-repeat: no-repeat; /* Prevent image repetition */
+
+  background-attachment:fixed;
+
   height: 100vh;
   margin: 0;
+
 
 }
 
