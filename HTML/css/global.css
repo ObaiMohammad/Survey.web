@@ -10,6 +10,7 @@ body {
 
 }
 
+
 .accessButton{
   padding: 10px;
   border-top: 5px;
@@ -44,4 +45,25 @@ button:hover {
   width: auto;
   padding: 10px 18px;
   background-color: #f44336;
+}
+.cancelButton:hover{
+  filter: brightness(0.85);
+
+}
+
+/* Style for the date input */
+input[type="date"],input[type=text], input[type=password],select {
+
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #ffffff; /* Background color */
+  color: #333; /* Text color */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  outline: none; /* Remove the default outline */
+
 }

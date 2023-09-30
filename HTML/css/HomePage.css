@@ -117,22 +117,6 @@ span.psw {
   }
 }
 
-/* Style the date input */
-/* Style for the date input */
-input[type="date"],input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  border-radius: 5px;
-  background-color: #ffffff; /* Background color */
-  color: #333; /* Text color */
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  outline: none; /* Remove the default outline */
-
-}
 
 .SignupActions {
   display: flex;

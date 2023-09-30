@@ -4,18 +4,25 @@ function addQuestion() {
 
    let question = document.createElement("div");
   question.className = 'question';
+  let questionsInfo = document.createElement("div");
+  questionsInfo.className = "questions-info"
 
+  let questionBody = creatQuestionBody()
+  let questionType =  creatQuestionTypeDropdown()
+  let removeQuestion = creatRemoveButton(question)
 
-   let questionBody = creatQuestionBody()
-   let questionType =  creatQuestionTypeDropdown()
+  questionsInfo.appendChild(questionBody);
+  questionsInfo.appendChild(questionType);
+  questionsInfo.appendChild(removeQuestion);
+
    let questionChoices = creatQuestionChoices(questionType)
-   let removeQuestion = creatRemoveButton(question)
 
 
-   question.appendChild(questionBody);
-   question.appendChild(questionType);
-   question.appendChild(removeQuestion);
-   question.appendChild(questionChoices);
+   // question.appendChild(questionBody);
+   // question.appendChild(questionType);
+   // question.appendChild(removeQuestion);
+  question.appendChild(questionsInfo);
+  question.appendChild(questionChoices);
 
 
 
@@ -75,19 +82,24 @@ function creatQuestionChoices(questionType) {
 function creatQuestionOptions() {
 
   const optionContainer = document.createElement("div");
+  optionContainer.className ="option-container"
+
   const optionButton = document.createElement("button");
   optionButton.type = "button";
   optionButton.textContent = "Add Option";
 
   optionContainer.appendChild(optionButton);
   optionButton.onclick = function() {
+    const optionActions = document.createElement("div")
+    optionActions.className = "option-actions"
     const optionInput = document.createElement("input");
     optionInput.type = "text";
     optionInput.name = "choices";
     optionInput.placeholder = "Enter option";
     let removeQuestion = creatRemoveButton(optionInput);
-    optionContainer.appendChild(optionInput);
-    optionContainer.appendChild(removeQuestion);
+    optionActions.appendChild(optionInput);
+    optionActions.appendChild(removeQuestion);
+    optionContainer.appendChild(optionActions);
   };
 
   return optionContainer;
@@ -98,7 +110,7 @@ function creatQuestionOptions() {
 function creatRemoveButton(element) {
   const removeButton = document.createElement("button");
   removeButton.type = "button";
-  removeButton.className = "btn"
+  removeButton.className = "cancelButton"
   const iconElement = document.createElement("i");
   iconElement.className = "fa fa-trash"; // Font Awesome class for the trash icon
 
