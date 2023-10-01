@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Up</title>
-  <script src="../js/LoginFunctions.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="../js/SignUpFunctions.js"></script>
 
 </head>
 <body>
@@ -18,6 +17,7 @@
       <h1 style="margin-top: 10px;">Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
+
       <div id ="personalINfo">
         <input type="text" placeholder="First name and last name" id="name" name="name" required>
         <input type="date" id="birthday" name="birthday" max required>
@@ -26,11 +26,21 @@
       <input type="text" placeholder="username" id="username" name="username" required>
       <input type="text" placeholder=" Email" id="email" name="email" required>
 
-      <input type="password" placeholder="Password" id="psw" name="psw" required>
+      <div class = "password-container">
+        <div class="password-input-container">
+          <input type="password" placeholder="Password" id="password" onkeyup="validate();"  required>
+          <i id="pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('password','pass-status')" ></i>
+        </div>
 
-     <input type="password" placeholder="Repeat Password" id = "psw-repeat" name="psw-repeat" required>
+        <div id="validation-txt"></div>
 
+        <div class="password-input-container">
+          <input type="password" placeholder="Repeat Password" id = "psw-repeat" onkeyup="matchValidate();" required>
+          <i id="repeat-pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('psw-repeat','repeat-pass-status')"></i>
+        </div>
 
+        <div id="match-txt"></div>
+      </div>
       <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
      <div class="SignupActions">

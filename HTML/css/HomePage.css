@@ -140,3 +140,40 @@ span.psw {
   cursor: pointer;
 }
 
+.password-validation {
+  display: none;
+  color: red;
+}
+
+.password-validation ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.password-validation li {
+  margin-bottom: 5px;
+}
+
+.valid {
+  color: green;
+}
+.password-input-container {
+  position: relative;
+}
+
+#password {
+  padding-right: 30px; /* Adjust the value as needed to create space for the icon */
+}
+
+.toggle-password-icon {
+  position: absolute;
+  right: 10px; /* Adjust the right position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#validation-txt,#match-txt {
+  font-size: 12px;
+  color: red;
+}
