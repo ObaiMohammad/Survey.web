@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <title>Sign Up</title>
   <script src="../js/SignUpFunctions.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 <body>
 
  <div id="SignUpBlock" class="modal">
 
-  <form class="modal-content animate">
+  <form class="modal-content animate"  onsubmit="return submitForm(event);">
 
-    <div class="singUpContainer">
+    <div class="singUpContainer" id = "sign-up-container" >
       <span onclick="removeBlock('SignUpBlock')"  class="closeModal">&times;</span>
       <h1 style="margin-top: 10px;">Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
+      <div id="sign-up-massage">
+        <p>Please fill in this form to create an account.</p>
+
+      </div>
+
       <hr>
 
       <div id ="personalINfo">
-        <input type="text" placeholder="First name and last name" id="name" name="name" required>
+        <input type="text" placeholder="First name" id="first-name" name="name" required>
+        <input type="text" placeholder="Last name" id="last-name" name="name" required>
         <input type="date" id="birthday" name="birthday" max required>
       </div>
 
@@ -28,14 +33,16 @@
 
       <div class = "password-container">
         <div class="password-input-container">
-          <input type="password" placeholder="Password" id="password" onkeyup="validate();"  required>
+<!--          <input type="password" placeholder="Password" id="password" onkeyup="validate();"  required>-->
+          <input type="password" placeholder="Password" id="password"  required>
           <i id="pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('password','pass-status')" ></i>
         </div>
 
         <div id="validation-txt"></div>
 
         <div class="password-input-container">
-          <input type="password" placeholder="Repeat Password" id = "psw-repeat" onkeyup="matchValidate();" required>
+<!--          <input type="password" placeholder="Repeat Password" id = "psw-repeat" onkeyup="matchValidate();" required>-->
+          <input type="password" placeholder="Repeat Password" id = "psw-repeat" required>
           <i id="repeat-pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('psw-repeat','repeat-pass-status')"></i>
         </div>
 
@@ -49,6 +56,8 @@
      </div>
     </div>
   </form>
+
  </div>
+
 </body>
 </html>

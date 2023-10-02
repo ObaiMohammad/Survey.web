@@ -1,6 +1,5 @@
 
 let survey = {
-  id: "",
   title: "",
   description: "",
   questions: []
@@ -27,18 +26,7 @@ function addQuestionToSurvey() {
 }
 
 
-function formattedSurvey(questions) {
-  const surveyNameInput = document.getElementById('surveyTitle');
-  const surveyDescriptionInput = document.getElementById('surveyDescription');
-  survey.name = surveyNameInput.value;
-  survey.description = surveyDescriptionInput.value;
 
-  console.log(survey.name +" /"+ survey.description)
-  return {id: 1,
-          name: survey.name,
-          description: survey.description,
-          questions: questions};
-}
 
 function submitSurvey() {
   let questions =  logUserInput()
@@ -114,4 +102,15 @@ function logUserInput() {
   return questionArray;
 }
 
-// You can call this function when needed, such as when the user submits the form
+function formattedSurvey(questions) {
+  const surveyNameInput = document.getElementById('surveyTitle');
+  const surveyDescriptionInput = document.getElementById('surveyDescription');
+  survey.name = surveyNameInput.value;
+  survey.description = surveyDescriptionInput.value;
+
+  console.log(survey.name +" /"+ survey.description)
+  return {
+    name: survey.name,
+    description: survey.description,
+    questions: questions};
+}

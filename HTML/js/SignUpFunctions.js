@@ -87,4 +87,88 @@ function viewPassword(inputId,iconId)
   }
 }
 
+function logUserInput() {
+  let user = {
+    "firstName": "",
+    "lastName": "",
+    "userName": "",
+    "password": "",
+    "email": "",
+    "birthday": "",
+    "userSurveys": []
+  }
+
+  user.firstName = document.getElementById("first-name").value;
+  user.lastName = document.getElementById("last-name").value;
+  user.birthday = document.getElementById("birthday").value;
+  user.userName = document.getElementById("username").value;
+  user.email = document.getElementById("email").value;
+  user.password = document.getElementById("password").value;
+
+  return user;
+
+}
+
+function submitForm(event) {
+
+  // Prevent the default form submission behavior so the user has to fill all the required inputs before submitting
+  event.preventDefault();
+
+  // Add your validation logic
+  if (validate() && matchValidate()) {
+    try {
+      const response =  addUser();
+
+      // Call the redirectUser() function if addUser() is successful
+      if (response.ok) {
+        displayResponseMessage('Thank you for singing up')
+
+        // time out so the user can read the massage should be modified latter to remove the content of the form and display only the massage
+        setTimeout(() => {
+            redirectUser();
+          }
+          , 5000);
+
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      displayResponseMessage('An error occurred during registration2. ' + error);
+    }
+  }
+}
+
+  function addUser() {
+    let NewUser = logUserInput();
+    const apiUrl = 'http://localhost:8989/user';
+
+    // Send the data to the API using the fetch API and return a Promise
+     return fetch(apiUrl, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(NewUser)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response;
+      });
+  }
+
+  function redirectUser() {
+    // in cas of different URL however in this webSite we can call removeBlock('SignUpBlock')" function
+    window.location.href = 'http://localhost:63342/Survey.web/HTML/view/HomePage.html'
+
+  }
+
+  function displayResponseMessage(responseMassage) {
+    const massageDiv = document.getElementById("sign-up-massage");
+
+    const massage = document.createElement("p");
+    massage.textContent = responseMassage;
+    massage.style.fontSize = "18"
+    massage.style.fontWeight = "bold"
+    massageDiv.appendChild(massage);
+  }
+
 
