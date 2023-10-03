@@ -1,6 +1,6 @@
 
 
-function validate(){
+function validatePassword(){
   let  validationField = document.getElementById('validation-txt');
   let  password= document.getElementById('password');
 
@@ -50,7 +50,7 @@ function validate(){
 
 }
 
-function matchValidate(){
+function matchValidatePassword(){
   let  validationField = document.getElementById('match-txt');
   let  password= document.getElementById('password');
   let  repeatedPassword= document.getElementById('psw-repeat');
@@ -58,7 +58,6 @@ function matchValidate(){
   let passwordContent = password.value;
   let repeatedPasswordContent = repeatedPassword.value;
 
-  console.log(passwordContent + repeatedPasswordContent)
   if (passwordContent === repeatedPasswordContent ){
     validationField.innerHTML = '';
     return true;
@@ -69,6 +68,33 @@ function matchValidate(){
     validationField.appendChild(errorMassage);
     return false;
   }
+}
+
+ async function validateUsername(){
+  let username = document.getElementById("username").value;
+  const apiUrl = 'http://localhost:8989/user/'+username ;
+
+   try{
+     const response =  await fetch(apiUrl, {
+       method: 'GET',
+       headers: {'Content-Type': 'application/json'},
+     })
+
+     const responseData = await response.json()
+     console.log(responseData +" =json");
+     // console.log(await response.text()+ " =text()");
+     console.log(( responseData === false) +" =json == false");
+     // console.log(( await response.text() === false)+ " =text == false");
+     if ( responseData === false){
+       displayResponseMessage("This username already exist please choose another one!",'username-massage','red')
+       return false;
+     }
+     return true;
+
+   }catch (error){
+     console.error('An error occurred:', error);
+   }
+
 }
 
 function viewPassword(inputId,iconId)
@@ -91,7 +117,7 @@ function logUserInput() {
   let user = {
     "firstName": "",
     "lastName": "",
-    "userName": "",
+    "username": "",
     "password": "",
     "email": "",
     "birthday": "",
@@ -101,7 +127,7 @@ function logUserInput() {
   user.firstName = document.getElementById("first-name").value;
   user.lastName = document.getElementById("last-name").value;
   user.birthday = document.getElementById("birthday").value;
-  user.userName = document.getElementById("username").value;
+  user.username = document.getElementById("username").value;
   user.email = document.getElementById("email").value;
   user.password = document.getElementById("password").value;
 
@@ -109,30 +135,33 @@ function logUserInput() {
 
 }
 
-function submitForm(event) {
+async function submitForm(event) {
 
   // Prevent the default form submission behavior so the user has to fill all the required inputs before submitting
   event.preventDefault();
 
-  // Add your validation logic
-  if (validate() && matchValidate()) {
-    try {
-      const response =  addUser();
+  //Remove all error messages before resubmitting the form
+  removeAllMassages();
 
+
+  // Add your validation logic
+  if ( await validateUsername() && validatePassword() && matchValidatePassword()  ) {
+    try {
+      const response = await addUser();
       // Call the redirectUser() function if addUser() is successful
       if (response.ok) {
-        displayResponseMessage('Thank you for singing up')
+        displayResponseMessage('Thank you for singing up',"sign-up-massage",'green')
 
-        // time out so the user can read the massage should be modified latter to remove the content of the form and display only the massage
+        // time out so the user can read the massage should be modified later to remove the content of the form and display only the massage
         setTimeout(() => {
             redirectUser();
           }
-          , 5000);
+          , 15000);
 
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      displayResponseMessage('An error occurred during registration2. ' + error);
+      displayResponseMessage('An error occurred during registration2. ' + error,'"sign-up-massage"','red');
     }
   }
 }
@@ -142,7 +171,7 @@ function submitForm(event) {
     const apiUrl = 'http://localhost:8989/user';
 
     // Send the data to the API using the fetch API and return a Promise
-     return fetch(apiUrl, {
+     return  fetch(apiUrl, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(NewUser)
@@ -161,14 +190,37 @@ function submitForm(event) {
 
   }
 
-  function displayResponseMessage(responseMassage) {
-    const massageDiv = document.getElementById("sign-up-massage");
+  function displayResponseMessage(responseMassage , parentID, massageColor) {
+    const massageParent = document.getElementById(parentID);
 
     const massage = document.createElement("p");
     massage.textContent = responseMassage;
-    massage.style.fontSize = "18"
-    massage.style.fontWeight = "bold"
-    massageDiv.appendChild(massage);
+    massage.style.fontSize = "18";
+    massage.style.fontWeight = "bold";
+    massage.style.color = massageColor;
+
+    massageParent.appendChild(massage);
   }
 
+function removeAllMassages(){
+  document.getElementById("sign-up-massage").innerHTML ='';
+  document.getElementById("username-massage").innerHTML ='';
+  // password error massages
+  document.getElementById('validation-txt').innerHTML = '';
+}
 
+function isValidEmail(email) {
+  // Regular expression pattern for a more permissive email format validation
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Test the email against the pattern
+  return emailPattern.test(email);
+}
+
+// Example usage:
+const email = "obai@studinti.unipd.it";
+if (isValidEmail(email)) {
+  console.log("Valid email address");
+} else {
+  console.log("Invalid email address");
+}

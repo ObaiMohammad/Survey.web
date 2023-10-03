@@ -29,11 +29,11 @@
       </div>
 
       <input type="text" placeholder="username" id="username" name="username" required>
+      <div id = "username-massage"></div>
       <input type="text" placeholder=" Email" id="email" name="email" required>
 
       <div class = "password-container">
         <div class="password-input-container">
-<!--          <input type="password" placeholder="Password" id="password" onkeyup="validate();"  required>-->
           <input type="password" placeholder="Password" id="password"  required>
           <i id="pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('password','pass-status')" ></i>
         </div>
@@ -41,7 +41,6 @@
         <div id="validation-txt"></div>
 
         <div class="password-input-container">
-<!--          <input type="password" placeholder="Repeat Password" id = "psw-repeat" onkeyup="matchValidate();" required>-->
           <input type="password" placeholder="Repeat Password" id = "psw-repeat" required>
           <i id="repeat-pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('psw-repeat','repeat-pass-status')"></i>
         </div>

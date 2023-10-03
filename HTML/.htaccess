@@ -327,7 +327,7 @@ AddDefaultCharset utf-8
 # https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
 
 # (1) If you're using cPanel AutoSSL or the Let's Encrypt webroot method it
-#     will fail to validate the certificate if validation requests are
+#     will fail to validatePassword the certificate if validation requests are
 #     redirected to HTTPS. Turn on the condition(s) you need.
 #
 #     https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
@@ -538,7 +538,7 @@ AddDefaultCharset utf-8
 # generator such as:
 # https://report-uri.com/home/generate/
 #
-# It is encouraged that you validate your CSP header using a CSP validator
+# It is encouraged that you validatePassword your CSP header using a CSP validator
 # such as:
 # https://csp-evaluator.withgoogle.com
 #
