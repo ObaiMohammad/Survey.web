@@ -25,12 +25,13 @@
       <div id ="personalINfo">
         <input type="text" placeholder="First name" id="first-name" name="name" required>
         <input type="text" placeholder="Last name" id="last-name" name="name" required>
-        <input type="date" id="birthday" name="birthday" max required>
+        <input type="date" id="birthday" name="birthday" onfocus="this.max=new Date().toISOString().split('T')[0]" required>
       </div>
 
       <input type="text" placeholder="username" id="username" name="username" required>
       <div id = "username-massage"></div>
       <input type="text" placeholder=" Email" id="email" name="email" required>
+      <div id = "email-massage"></div>
 
       <div class = "password-container">
         <div class="password-input-container">
@@ -38,14 +39,14 @@
           <i id="pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('password','pass-status')" ></i>
         </div>
 
-        <div id="validation-txt"></div>
+        <div id="password-massage"></div>
 
         <div class="password-input-container">
           <input type="password" placeholder="Repeat Password" id = "psw-repeat" required>
           <i id="repeat-pass-status" class="fa fa-eye toggle-password-icon" aria-hidden="true" onclick="viewPassword('psw-repeat','repeat-pass-status')"></i>
         </div>
 
-        <div id="match-txt"></div>
+        <div id="match-password-massage"></div>
       </div>
       <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 

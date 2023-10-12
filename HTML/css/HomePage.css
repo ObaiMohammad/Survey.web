@@ -173,7 +173,7 @@ span.psw {
   cursor: pointer;
 }
 
-#validation-txt,#match-txt {
+#password-massage,#match-password-massage {
   font-size: 12px;
   color: red;
 }

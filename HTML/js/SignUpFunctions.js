@@ -1,7 +1,7 @@
 
 
-function validatePassword(){
-  let  validationField = document.getElementById('validation-txt');
+function checkIsValidPassword(){
+  let  validationField = document.getElementById('password-massage');
   let  password= document.getElementById('password');
 
   let content = password.value;
@@ -50,8 +50,8 @@ function validatePassword(){
 
 }
 
-function matchValidatePassword(){
-  let  validationField = document.getElementById('match-txt');
+function checkPasswordsMatch(){
+  let  validationField = document.getElementById('match-password-massage');
   let  password= document.getElementById('password');
   let  repeatedPassword= document.getElementById('psw-repeat');
 
@@ -70,32 +70,6 @@ function matchValidatePassword(){
   }
 }
 
- async function validateUsername(){
-  let username = document.getElementById("username").value;
-  const apiUrl = 'http://localhost:8989/user/'+username ;
-
-   try{
-     const response =  await fetch(apiUrl, {
-       method: 'GET',
-       headers: {'Content-Type': 'application/json'},
-     })
-
-     const responseData = await response.json()
-     console.log(responseData +" =json");
-     // console.log(await response.text()+ " =text()");
-     console.log(( responseData === false) +" =json == false");
-     // console.log(( await response.text() === false)+ " =text == false");
-     if ( responseData === false){
-       displayResponseMessage("This username already exist please choose another one!",'username-massage','red')
-       return false;
-     }
-     return true;
-
-   }catch (error){
-     console.error('An error occurred:', error);
-   }
-
-}
 
 function viewPassword(inputId,iconId)
 {
@@ -113,27 +87,7 @@ function viewPassword(inputId,iconId)
   }
 }
 
-function logUserInput() {
-  let user = {
-    "firstName": "",
-    "lastName": "",
-    "username": "",
-    "password": "",
-    "email": "",
-    "birthday": "",
-    "userSurveys": []
-  }
 
-  user.firstName = document.getElementById("first-name").value;
-  user.lastName = document.getElementById("last-name").value;
-  user.birthday = document.getElementById("birthday").value;
-  user.username = document.getElementById("username").value;
-  user.email = document.getElementById("email").value;
-  user.password = document.getElementById("password").value;
-
-  return user;
-
-}
 
 async function submitForm(event) {
 
@@ -145,7 +99,7 @@ async function submitForm(event) {
 
 
   // Add your validation logic
-  if ( await validateUsername() && validatePassword() && matchValidatePassword()  ) {
+  if ( await CheckIsValidUsername() && await checkIsValidEmail()&& checkIsValidPassword() && checkPasswordsMatch()  ) {
     try {
       const response = await addUser();
       // Call the redirectUser() function if addUser() is successful
@@ -156,7 +110,7 @@ async function submitForm(event) {
         setTimeout(() => {
             redirectUser();
           }
-          , 15000);
+          , 5000);
 
       }
     } catch (error) {
@@ -183,44 +137,134 @@ async function submitForm(event) {
         return response;
       });
   }
-
-  function redirectUser() {
-    // in cas of different URL however in this webSite we can call removeBlock('SignUpBlock')" function
-    window.location.href = 'http://localhost:63342/Survey.web/HTML/view/HomePage.html'
-
+function logUserInput() {
+  let user = {
+    "firstName": "",
+    "lastName": "",
+    "username": "",
+    "password": "",
+    "email": "",
+    "birthday": "",
+    "userSurveys": []
   }
 
-  function displayResponseMessage(responseMassage , parentID, massageColor) {
-    const massageParent = document.getElementById(parentID);
+  user.firstName = document.getElementById("first-name").value;
+  user.lastName = document.getElementById("last-name").value;
+  user.birthday = document.getElementById("birthday").value;
+  user.username = document.getElementById("username").value;
+  user.email = document.getElementById("email").value;
+  user.password = document.getElementById("password").value;
 
-    const massage = document.createElement("p");
-    massage.textContent = responseMassage;
-    massage.style.fontSize = "18";
-    massage.style.fontWeight = "bold";
-    massage.style.color = massageColor;
+  return user;
 
-    massageParent.appendChild(massage);
-  }
-
-function removeAllMassages(){
-  document.getElementById("sign-up-massage").innerHTML ='';
-  document.getElementById("username-massage").innerHTML ='';
-  // password error massages
-  document.getElementById('validation-txt').innerHTML = '';
 }
 
-function isValidEmail(email) {
+
+
+async function CheckIsValidUsername(){
+  let username = document.getElementById("username").value;
+  const apiUrl = 'http://localhost:8989/user/validate/username/'+username ;
+
+  try{
+    const response =  await fetch(apiUrl, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+    })
+
+    const responseData = await response.json()
+    console.log(responseData +" =json");
+    // console.log(await response.text()+ " =text()");
+    console.log(( responseData === false) +" =json == false");
+    // console.log(( await response.text() === false)+ " =text == false");
+    if ( responseData === false){
+      displayResponseMessage("This username already exist please choose another one!",'username-massage','red')
+      return false;
+    }
+    return true;
+
+  }catch (error){
+    console.error('An error occurred:', error);
+  }
+
+}
+async function checkIsValidEmail() {
+  let email = document.getElementById("email").value;
   // Regular expression pattern for a more permissive email format validation
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   // Test the email against the pattern
-  return emailPattern.test(email);
+  let validPattern =  emailPattern.test(email);
+   if (validPattern){
+    return  await isEmailRegistered(email)
+   }else {
+     displayResponseMessage("This is not a valid email address!",'email-massage','red')
+     return false;
+   }
 }
 
-// Example usage:
-const email = "obai@studinti.unipd.it";
-if (isValidEmail(email)) {
-  console.log("Valid email address");
-} else {
-  console.log("Invalid email address");
+async function isEmailRegistered(email) {
+  const apiUrl = 'http://localhost:8989/user/validate/email/'+email ;
+  const response = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'},
+  });
+
+  if (response.status === 200) {
+    // Email is available, you can proceed with registration
+    return true;
+  } else if (response.status === 409) {
+    // Email is already registered, display a message to the user
+    const errorMessage = await response.text();
+    displayResponseMessage("This email already exist please sign in!",'email-massage','red')
+    setTimeout(() => {
+        redirectUser();
+      }
+      , 5000);
+    return false;
+
+  } else {
+    // Handle other response status codes if needed
+    displayResponseMessage('Unexpected response status:'+response.status,'sign-up-massage','red')
+    return false;
+  }
 }
+function displayResponseMessage(responseMassage , parentID, massageColor) {
+  const massageParent = document.getElementById(parentID);
+
+  const massage = document.createElement("p");
+  massage.textContent = responseMassage;
+  massage.style.fontSize = "18";
+  massage.style.fontWeight = "bold";
+  massage.style.color = massageColor;
+
+  massageParent.appendChild(massage);
+}
+
+function removeAllMassages(){
+  document.getElementById("sign-up-massage").innerHTML ='';
+  document.getElementById("username-massage").innerHTML ='';
+  document.getElementById("email-massage").innerHTML ='';
+  // password error massages
+  document.getElementById('password-massage').innerHTML = '';
+  document.getElementById('match-password-massage').innerHTML = '';
+}
+
+function redirectUser() {
+  // in cas of different URL however in this webSite we can call removeBlock('SignUpBlock')" function
+  // window.location.href = 'http://localhost:63342/Survey.web/HTML/view/HomePage.html'
+
+  removeBlock('SignUpBlock');
+}
+function displayBlock(blockName) {
+  document.getElementById(blockName).style.display='block'
+}
+function  removeBlock (blockName){
+  document.getElementById(blockName).style.display='none'
+}
+// When the user clicks anywhere outside the modal, close it
+// window.onclick = function(event) {
+//   if (event.target === modal) {
+//     modal.style.display = "none";
+//   }
+// }
+

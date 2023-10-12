@@ -402,7 +402,7 @@ following the [Open Graph
 tutorial](https://developers.facebook.com/docs/sharing/webmasters/getting-started).
 
 For a reference of Open Graph's markup and properties, you may check [Facebook's
-Open Graph Protocol reference](https://ogp.me). Finally, you can validatePassword your
+Open Graph Protocol reference](https://ogp.me). Finally, you can checkIsValidPassword your
 markup with the [Facebook Object
 Debugger](https://developers.facebook.com/tools/debug/) (needs registration to
 Facebook).
@@ -425,7 +425,7 @@ Graph. In fact, Twitter will use Open Graph when Cards is not available. You can
 read more about the various snippet formats in the
 [official Twitter Cards
 documentation](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards),
-and you can validatePassword your markup with the [Card
+and you can checkIsValidPassword your markup with the [Card
 validator](https://cards-dev.twitter.com/validator) (needs registration to
 Twitter).
 
@@ -449,7 +449,7 @@ this reason, this metadata is more generic for SEO, notably for Google's
 search-engine, although this vocabulary is also used by Microsoft, Pinterest and
 Yandex.
 
-You can validatePassword your markup with the [Structured Data Testing
+You can checkIsValidPassword your markup with the [Structured Data Testing
 Tool](https://search.google.com/structured-data/testing-tool). Also, please
 note that this markup requires to add attributes to your top `html` tag.
 

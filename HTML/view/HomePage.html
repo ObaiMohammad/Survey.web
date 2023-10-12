@@ -33,6 +33,13 @@
      $(function(){
        $("#singUp-placeholder").load("SingUpForm.html");
      });
+     $(document).ready(function() {
+       // Get the current date in the format "YYYY-MM-DD"
+       let currentDate = new Date().toISOString().split("T")[0];
+
+       // Set the max attribute for the date input
+       $("#birthday").attr("max", currentDate);});
+
    </script>
 
  </div>
