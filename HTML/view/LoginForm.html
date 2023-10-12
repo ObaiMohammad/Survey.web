@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>LoginForm</title>
+  <script src="../js/LoginFunctions.js"></script>
+
+
 </head>
 <body>
 
 <div id="loginBlock" >
 
-  <form id="loginForm">
-    <div class="singupContainer">
+  <form id="loginForm" onsubmit="login(event)">
+    <div id ="login-massage"> </div>
+    <div class="signInContainer">
       <input type="text" placeholder="Enter Username" id = "uname" name="uname" required>
 
 

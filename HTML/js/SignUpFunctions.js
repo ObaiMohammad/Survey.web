@@ -213,8 +213,7 @@ async function isEmailRegistered(email) {
     // Email is available, you can proceed with registration
     return true;
   } else if (response.status === 409) {
-    // Email is already registered, display a message to the user
-    const errorMessage = await response.text();
+    // Email is already registered
     displayResponseMessage("This email already exist please sign in!",'email-massage','red')
     setTimeout(() => {
         redirectUser();
@@ -223,7 +222,7 @@ async function isEmailRegistered(email) {
     return false;
 
   } else {
-    // Handle other response status codes if needed
+    // Handle other response status
     displayResponseMessage('Unexpected response status:'+response.status,'sign-up-massage','red')
     return false;
   }

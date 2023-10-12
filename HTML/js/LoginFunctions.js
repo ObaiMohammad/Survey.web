@@ -1,24 +1,36 @@
-// Get the modal
-let modal = document.getElementById('loginBlock');
+// document.addEventListener("submit",()=>{
+//   let username = document.getElementById("uname").value;
+//  let password = document.getElementById("psw").value;
+//   login(username,password)
+// } );
 
 
+async function login(event) {
+  event.preventDefault();
 
-//set max date of birth to the current date
+  // remove error massage before resubmit the form
+  document.getElementById("login-massage").innerHTML ='';
 
-//
+  let username = document.getElementById("uname").value;
+  let password = document.getElementById("psw").value;
 
-// function onSignIn(googleUser) {
-//   let profile = googleUser.getBasicProfile();
-//   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-//   console.log('Name: ' + profile.getName());
-//   console.log('Image URL: ' + profile.getImageUrl());
-//   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-// }
-// gapi.load('auth2', function() {
-//   gapi.auth2.init({
-//     client_id: 'YOUR_CLIENT_ID',
-//     // Other configuration options
-//     redirect_uri: 'http://localhost:63342/Survey.web/HTML/web/SrveyPage.html',
-//   });
-// });
+  const apiUrl = 'http://localhost:8989/user/login/' + username + '/' + password;
+  const response = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'},
+  });
+  if (response.status === 200) {
+    window.location.href ='http://localhost:63342/Survey.web/HTML/view/UserHomePage.html'
+    return true;
+  } else if (response.status === 401) {
+    // User Unauthorized
+    displayResponseMessage("Wrong Password or Username", 'login-massage', 'red')
+    return false;
+
+  } else {
+    // Handle other response status codes just for practice
+    displayResponseMessage('Unexpected response status:' + response.status, 'login-massage', 'red')
+  }
+}
+
 
